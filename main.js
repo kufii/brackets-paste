@@ -2,7 +2,7 @@
 /*global define, $, brackets, window */
 
 /** Simple extension that adds a "File > Hello World" menu item */
-define(function (require, exports, module) {
+/*define(function (require, exports, module) {
     "use strict";
     
     
@@ -29,4 +29,33 @@ define(function (require, exports, module) {
     // We could also add a key binding at the same time:
     //menu.addMenuItem(MY_COMMAND_ID, "Ctrl-Alt-H");
     // (Note: "Ctrl" is automatically mapped to "Cmd" on Mac)
-});
+});*/
+
+(function () {
+    
+    'use strict';
+
+    var httpReq = new XMLHttpRequest();
+    var url = 'http://paste.ee/api';
+    var fields = 'key=public&description=test&paste=this is a test paste&format=JSON';
+    var fields2 = {key: 'public', description: 'test', paste: 'this is a test paste', format: 'JSON'};
+    
+    httpReq.open('POST', url, true);
+    console.log('good');
+    
+    httpReq.setRequestHeader('Access-Control-Allow-Headers', '*');
+    httpReq.setRequestHeader('Content-type', 'application/ecmascript');
+    httpReq.setRequestHeader('Access-Control-Allow-Origin', '*');
+    console.log('ok');
+    
+    httpReq.onreadystatechange = function () {
+        console.log('wat');
+        if (httpReq.readyState === 4 && httpReq.status === 'success') {
+            console.log('test');
+            alert(httpReq.responseText);
+        }
+    };
+    
+    httpReq.send(fields2);
+    
+}());

@@ -58,7 +58,7 @@ define(function (require, exports, module) {
         httpReq.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         console.log('help');
         
-        if (httpReq.readyState === 4 && httpReq.status === 200) {
+        httpReq.onload = function () {
             console.log('help');
             console.log(httpReq.responseText);
         }

@@ -49,7 +49,7 @@ define(function (require, exports, module) {
     }
     
     // Pastes highlighted text 
-    var doPaste = function () {
+    function doPaste() {
         var fields = 'key=public&description=test&language=javascript&paste=' + getSelection() + '&format=JSON';
 
         httpReq.open('POST', url, true);
@@ -70,7 +70,7 @@ define(function (require, exports, module) {
         console.log(httpReq.readyState);
         
         showDialog(getPasteId(httpReq.responseText));
-    };
+    }
 
     // Register a command (a UI-less object associating an id to a handler)
     var commandId = 'pastePlugin.paste';
